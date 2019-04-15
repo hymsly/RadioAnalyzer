@@ -1,4 +1,4 @@
 #Dont upload .wav files
 *.wav
 #DJANGO
-*/__pycache__/
+**/__pycache__/
