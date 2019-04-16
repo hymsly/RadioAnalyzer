@@ -2,3 +2,4 @@
 *.wav
 #DJANGO
 radioAnalyzerBackend/*/__pycache__/*
+.vscode/*
