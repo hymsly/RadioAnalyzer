@@ -14,16 +14,17 @@ filename = time.strftime("%Y%m%d%H%M%S",time.localtime())+".wav"
 x_filename = os.path.join(folder,filename)
 f = open(x_filename, 'wb')
 start_time_in_seconds = time.time()
-time_limit = 2*60*60
+time_limit = 50*60
 block_size = 1024
 iteration = 0
-modulo = 20
+modulo = 50
 while time.time() - start_time_in_seconds < time_limit:
     buffer = response.read(block_size)
     iteration = (iteration + 1)%modulo
     if(iteration==0):
         print(time.time())
     if not buffer:
-        break
+        print('error',time.time())
+        continue
     f.write(buffer)
 f.close()
