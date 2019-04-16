@@ -16,8 +16,13 @@ f = open(x_filename, 'wb')
 start_time_in_seconds = time.time()
 time_limit = 2*60*60
 block_size = 1024
+iteration = 0
+modulo = 20
 while time.time() - start_time_in_seconds < time_limit:
     buffer = response.read(block_size)
+    iteration = (iteration + 1)%modulo
+    if(iteration==0):
+        print(time.time())
     if not buffer:
         break
     f.write(buffer)
