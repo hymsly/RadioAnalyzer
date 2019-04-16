@@ -13,7 +13,7 @@ class Polinomio:
         file.close()
     def showFilePath ( self ):
         print( self.path_file )
-    def getGreatestCoeficient ( self ):
+    def getGreatestGrade ( self ):
         length = len( self.coeficientes )
         for i in range( 1 , length ):
             if( self.coeficientes[-i] != 0 ):
@@ -24,9 +24,9 @@ class Polinomio:
         file = open( self.path_file , 'r' )
         listaCoeficientes = file.readline()
         self.coeficientes = [ int( coef ) for coef in listaCoeficientes.split() ]
-        greatestCoeficient = self.getGreatestCoeficient()
-        if( greatestCoeficient != 1 ):
-            self.coeficientes = self.coeficientes [ : -greatestCoeficient+1 ]
+        greatestGrade = self.getGreatestGrade()
+        if( greatestGrade != 1 ):
+            self.coeficientes = self.coeficientes [ : -greatestGrade+1 ]
         self.grado = len( self.coeficientes )
         file.close()
 
