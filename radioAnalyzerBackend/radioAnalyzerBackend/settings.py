@@ -56,7 +56,7 @@ ROOT_URLCONF = 'radioAnalyzerBackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['radioAnalyzerBackend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -6,3 +6,6 @@ class Radio(models.Model):
     nombre = models.CharField(max_length=100)
     enlace = models.CharField(max_length=200)
     estado = models.IntegerField()
+
+    def __str__(self):
+        return self.nombre + "->" +self.enlace
