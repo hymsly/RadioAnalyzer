@@ -3,3 +3,8 @@
 #DJANGO
 radioAnalyzerBackend/*/__pycache__/*
 .vscode/*
+__pycache__/
+# django migrations 
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
