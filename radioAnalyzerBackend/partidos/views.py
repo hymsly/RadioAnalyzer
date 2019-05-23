@@ -9,6 +9,12 @@ import os
 def getPartidos(request):
     partidos = Partido.objects.all()
     return render(request,'partidos/partidosList.html',{"partidos":partidos})
+
+def getAudio(request,idPartido):
+    partido = Partido.objects.get(id=idPartido)
+    print(partido)
+    return render(request,'partidos/partidoAsignarSlogan.html')
+
 def recordAudio(request2):
     partidosReadyToRecord = Partido.objects.all().filter(estado=0)
     localtime = int(time.strftime("%Y%m%d%H%M%S",time.localtime()))
@@ -19,7 +25,7 @@ def recordAudio(request2):
         #print(tiempo)
         print(partidotime)
         if localtime>=partidotime:
-            folder ='audios'
+            folder ='/audios'
             filename = partido.equipoLocal.nombre + "-"+partido.equipoVisitante.nombre + "--" + str(partidotime) + ".wav"
             x_filename = os.path.join(folder,filename.replace(' ','-'))
             #change estado
@@ -39,4 +45,4 @@ def recordAudio(request2):
                     continue
                 f.write(buffer)
             f.close()
-    return HttpResponse()
+    return HttpResponse('<h1>Audio grabado</h1>')

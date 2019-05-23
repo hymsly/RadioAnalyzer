@@ -126,6 +126,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIR = (
-#    os.path.join(BASE_DIR,'assets'),
-#)
+MEDIA_ROOT = os.path.join(BASE_DIR,"audios")
+MEDIA_URL = 'audios/'

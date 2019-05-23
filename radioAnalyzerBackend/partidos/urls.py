@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('', views.getPartidos),
     path('record/',views.recordAudio),
+    path('<idPartido>/',views.getAudio)
 ]

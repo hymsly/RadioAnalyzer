@@ -14,3 +14,11 @@ class Partido(models.Model):
     duracion = models.IntegerField()
     estado = models.IntegerField()
     estadoAsignacion = models.IntegerField()
+    def __str__(self):
+        return self.equipoLocal.nombre+"-"+self.equipoVisitante.nombre
+class SloganPartido(models.Model):
+    id = models.AutoField(primary_key=True)
+    partido = models.ForeignKey(Partido,on_delete=models.CASCADE)
+    tiempoInicio = models.IntegerField()
+    duracion = models.IntegerField()
+    tipo_asignacion = models.BooleanField()
