@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from urllib import request
 import time
 import os
@@ -9,14 +10,16 @@ URL_MODA = "https://18303.live.streamtheworld.com/CRP_MOD.mp3"
 ##CONNECTOR A LA RADIO
 
 ##file
+directory = os.path.dirname(os.path.abspath(__file__))
 folder ='audios'
 fileName = 'MODA' + time.strftime("%Y%m%d",time.localtime())+".wav"
-filePath = os.path.join(folder,fileName)
+filePath = os.path.join(directory,folder,fileName)
+print(filePath)
 
 f = open(filePath, 'wb')
 start_time_in_seconds = time.time()
 ###time in seconds
-time_limit = 5*MINUTE*HOUR
+time_limit = 20
 block_size = 2048
 print("Recording...")
 response = request.urlopen(URL_MODA)
