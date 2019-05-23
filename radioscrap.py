@@ -19,7 +19,7 @@ filePath = os.path.join(directory,folder,fileName)
 f = open(filePath, 'wb')
 start_time_in_seconds = time.time()
 ###time in seconds
-time_limit = 5*HOUR*MINUTE
+time_limit = 3*HOUR*MINUTE
 block_size = 1024
 print("Recording...")
 response = request.urlopen(URL_MODA)
