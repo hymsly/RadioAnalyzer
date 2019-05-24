@@ -1,10 +1,6 @@
 #Dont upload .wav files
 *.wav
-#DJANGO
-radioAnalyzerBackend/*/__pycache__/*
-.vscode/*
-__pycache__/
-# django migrations 
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
+##backend
+/radioAnalyzerBackend/node_modules/*
+##frontend
+/radioAnalyzerFrontend/node_modules/*
