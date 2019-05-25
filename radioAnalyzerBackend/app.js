@@ -22,6 +22,6 @@ app.use((req, res, next) => {
 });
 
 //rutas base
-app.use('/', AudioRoutes);
+app.use('/api', AudioRoutes);
 
 module.exports = app;

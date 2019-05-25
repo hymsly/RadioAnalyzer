@@ -1,0 +1,39 @@
+<div class="container" style="margin-top: 70px;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>File</th>
+        <th>Estado</th>
+        <th>Fecha creacion</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let audio of audios">
+        <td> {{ audio.id }}</td>
+        <td> {{ audio.name }}</td>
+        <td> {{ audio.location }}</td>
+        <td> {{ audio.estado }}</td>
+        <td> {{ audio.created_at }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="selectAudio(audio)"> Show details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card text-center" *ngIf="selectedAudio">
+    <div class="card-header">
+      # {{selectedAudio.id}}
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">{{selectedAudio.name}}</h4>
+      <p class="card-text">
+        {{selectedAudio.location}}
+      </p>
+      <button class="btn btn-primary" (click)="Download(selectedAudio)"> Download</button>
+    </div>
+
+  </div>
+</div>
