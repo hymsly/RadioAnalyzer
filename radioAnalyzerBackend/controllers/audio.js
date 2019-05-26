@@ -73,7 +73,9 @@ Date.prototype.formatString = function () {
 
 function recordAudio(req, res) {
     let today = new Date();
+    console.log(today);
     let filename = today.formatString();
+    console.log(filename)
     const pythonProcess = spawn("py", ["radioscrap.py", filename]);
     pythonProcess.stdout.on('data', (data) => {
         let query = "insert into audio(name,location,estado,created_at) values(?,?,1,now())";

@@ -4,3 +4,6 @@
 /radioAnalyzerBackend/node_modules/*
 ##frontend
 /radioAnalyzerFrontend/node_modules/*
+##PRUEBAS
+/Test/*
+/Train/*
