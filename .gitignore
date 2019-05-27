@@ -2,5 +2,6 @@
 /audios/*.wav
 ##backend
 /radioAnalyzerBackend/node_modules/*
+/radioAnalyzerBackend/audios/*.wav
 ##frontend
 /radioAnalyzerFrontend/node_modules/*

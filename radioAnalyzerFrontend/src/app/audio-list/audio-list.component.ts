@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as FileSaver from 'file-saver';
 @Component({
-  selector: 'app-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
+  selector: 'app-audio-list',
+  templateUrl: './audio-list.component.html',
+  styleUrls: ['./audio-list.component.css']
 })
-export class ContactListComponent implements OnInit {
+export class AudioListComponent implements OnInit {
   public audios;
   public selectedAudio;
   constructor(public api: ApiService) {

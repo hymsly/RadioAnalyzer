@@ -9,7 +9,7 @@ var app = express();
 var AudioRoutes = require('./routes/audio');
 
 //bodyParser middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //configurar cabeceras y cors

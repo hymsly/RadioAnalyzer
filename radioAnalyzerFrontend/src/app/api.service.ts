@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
 
 import { Audio } from './audio';
-
+import { Global } from './global';
 @Injectable({
   providedIn: 'root'
 })
 
 export class ApiService {
-  apiURL: string = 'http://localhost:3000/api';
-  constructor(private httpClient: HttpClient) { }
+  public apiURL: String = (new Global).url;
+  constructor(private httpClient: HttpClient) {
+  }
 
   public getAudios() {
     console.log(`${this.apiURL}/audio`);
@@ -20,5 +21,10 @@ export class ApiService {
   }
   public dowloandAudio(file: string) {
     return this.httpClient.get(`${this.apiURL}/audio/download/${file}`, { responseType: 'blob' });
+  }
+  public uploadAudio(formData) {
+    return this.httpClient.post(`${this.apiURL}/audio/upload`, formData, {
+      reportProgress: true, observe: 'events'
+    });
   }
 }

@@ -5,7 +5,6 @@ var audioModel = require('../models/audio');
 const path = require('path');
 
 
-
 function getAllAudios(req, res) {
     let query = "select * from audio;";
     db.driver.execQuery(query, [], function (err, result) {
@@ -92,9 +91,34 @@ function recordAudio(req, res) {
     });
 }
 
+function uploadAudio(req, res) {
+    if (!req.files) {
+        res.status(400).send({
+            message: "no file found"
+        })
+    } else {
+        let path = req.files.file.path;
+        let filename = req.files.file.name;
+        let serverFileName = path.split('\\')[1].split('.')[0];
+        let query = "insert into audio(name,location,estado,created_at) values(?,?,1,now())";
+        db.driver.execQuery(query, [filename, serverFileName], function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500).send({
+                    message: "error"
+                })
+            } else {
+                res.status(200).send({
+                    message: "recorded"
+                })
+            }
+        })
+    }
+}
 module.exports = {
     getAudio,
     getAllAudios,
     getBlob,
-    recordAudio
+    recordAudio,
+    uploadAudio
 };
