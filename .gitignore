@@ -5,3 +5,6 @@
 /radioAnalyzerBackend/audios/*.wav
 ##frontend
 /radioAnalyzerFrontend/node_modules/*
+##PRUEBAS
+/Test/*
+/Train/*
