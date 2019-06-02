@@ -1,0 +1,37 @@
+<div class="container" style="margin-top: 70px;">
+  <div class="starter-template">
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <h1>{{ titulo }} </h1>
+        <form [formGroup]="contacto" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="radio"> Radio</label>
+            <select class="form-control" formControlName="radio"
+              [ngClass]="{ 'is-invalid': submitted && f.radio.errors }">
+              <option value="">Seleccionar</option>
+              <option value="RPP">RPP</option>
+              <option value="MODA">Radio Moda</option>
+            </select>
+            <div *ngIf="submitted && f.radio.errors" class="invalid-feedback">
+              <div *ngIf="f.radio.errors.required">Por favor, Selecciona una Radio</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Duracion</label>
+            <input formControlName="duracion" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.duracion.errors }" placeholder="Duracion" [format]="24"
+              [ngxTimepicker]="range" [ngxTimepicker]="with5Gap" min="00:05" max="02:00" readonly>
+            <ngx-material-timepicker #range #with5Gap [minutesGap]="5"></ngx-material-timepicker>
+            <div *ngIf="submitted && f.duracion.errors" class="invalid-feedback">
+              <div *ngIf="f.duracion.errors.required">Por favor, Selecciona una Duracion</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Aceptar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,28 +4,28 @@ import time
 import os
 import sys
 
-HOUR = 60
+HOUR = 60*60
 MINUTE = 60
-URL_RPP = "https://18493.live.streamtheworld.com/RADIO_RPP.mp3"
-URL_MODA = "https://18303.live.streamtheworld.com/CRP_MOD.mp3"
 ##CONNECTOR A LA RADIO
 
 ##file
 directory = os.path.dirname(os.path.abspath(__file__))
 folder ='audios'
-fileName = 'RPP' + time.strftime("%Y%m%d%H%M%S",time.localtime())+".wav"
-#fileName = sys.argv[1] + '.wav'
+fileName = sys.argv[1] + '.wav'
 filePath = os.path.join(directory,folder,fileName)
-print(filePath)
+
+##url de radio
+URL = sys.argv[2]
+
+##time in seconds
+time_limit = int(sys.argv[3])*HOUR + int(sys.argv[4])*MINUTE
 
 f = open(filePath, 'wb')
 start_time_in_seconds = time.time()
-###time in seconds
-time_limit = 10*MINUTE
 block_size = 1024
 print("Recording...")
-response = request.urlopen(URL_RPP)
-#print(time.perf_counter())
+response = request.urlopen(URL)
+
 time_start = time.time()
 while time.time() < time_start +  time_limit :
     buffer = response.read(block_size)

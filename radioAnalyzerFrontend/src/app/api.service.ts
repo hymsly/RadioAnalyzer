@@ -27,4 +27,7 @@ export class ApiService {
       reportProgress: true, observe: 'events'
     });
   }
+  public recordAudio(formData) {
+    return this.httpClient.post(`${this.apiURL}/audio/record`, formData);
+  }
 }

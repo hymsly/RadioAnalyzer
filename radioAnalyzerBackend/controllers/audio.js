@@ -3,7 +3,10 @@
 const spawn = require('child_process').spawn;
 var audioModel = require('../models/audio');
 const path = require('path');
-
+const RADIO = {
+    RPP: "https://18493.live.streamtheworld.com/RADIO_RPP.mp3",
+    MODA: "https://18303.live.streamtheworld.com/CRP_MOD.mp3"
+};
 
 function getAllAudios(req, res) {
     let query = "select * from audio;";
@@ -72,25 +75,34 @@ Date.prototype.formatString = function () {
 
 function recordAudio(req, res) {
     let today = new Date();
-    console.log(today);
     let filename = today.formatString();
-    console.log(filename)
-    const pythonProcess = spawn("py", ["radioscrap.py", filename]);
-    pythonProcess.stdout.on('data', (data) => {
-        let query = "insert into audio(name,location,estado,created_at) values(?,?,1,now())";
-        db.driver.execQuery(query, [filename, filename], function (err, result) {
-            if (err) {
-                console.log(err);
-                res.status(500).send({
-                    message: "error"
+    let duracion = req.body.duracion;
+    let hour = duracion.split(':')[0];
+    let minute = duracion.split(':')[1];
+    let radio = RADIO[req.body.radio];
+
+    let query = "insert into audio(name,location,estado,created_at) values(?,?,0,now())";
+    db.driver.execQuery(query, [req.body.radio, filename], function (err) {
+        if (err) {
+            console.log(err);
+            res.send({
+                message: 'error'
+            })
+        } else {
+            res.send({
+                message: 'enviado'
+            })
+            const pythonProcess = spawn("py", ["radioscrap.py", filename, radio, hour, minute]);
+            pythonProcess.stdout.on('data', (data) => {
+                let query = "update audio set estado=1 where location=?";
+                db.driver.execQuery(query, [filename], function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
                 })
-            } else {
-                res.status(200).send({
-                    message: "recorded"
-                })
-            }
-        })
-    });
+            });
+        }
+    })
 }
 
 function uploadAudio(req, res) {
