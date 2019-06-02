@@ -32,8 +32,11 @@
       <p class="card-text">
         {{selectedAudio.location}}
       </p>
-      <button class="btn btn-primary" (click)="Download(selectedAudio)"> Download</button>
-    </div>
+      <div>
+        <button class="btn btn-primary" (click)="Analysis(selectedAudio)" [disabled]="readyAudio" style="margin:10px"> Analisar</button>
+        <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="readyAudio" style="margin:10px"> Descargar</button>
+      </div>
+      </div>
 
   </div>
 </div>

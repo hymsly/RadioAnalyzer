@@ -11,7 +11,7 @@ import { from } from 'rxjs';
 export class RecordAudioComponent implements OnInit {
   contacto: FormGroup;
   submitted = false;
-  titulo = 'Crear un Formulario con Angular 7 y Bootstrap 4 + Validación';
+  titulo = 'Grabacion de un nuevo Audio';
   constructor(private formBuilder: FormBuilder, private api: ApiService) { }
 
   ngOnInit() {
