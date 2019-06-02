@@ -9,3 +9,5 @@
 /Test/*
 /Train/*
 /tocut/*
+##GITIGNORE
+/radioAnalyzerBackend/.env
