@@ -92,7 +92,7 @@ function recordAudio(req, res) {
             res.send({
                 message: 'enviado'
             })
-            const pythonProcess = spawn("py", ["radioscrap.py", filename, radio, hour, minute]);
+            const pythonProcess = spawn(process.env.PY_EXE, ["radioscrap.py", filename, radio, hour, minute]);
             pythonProcess.stdout.on('data', (data) => {
                 let query = "update audio set estado=1 where location=?";
                 db.driver.execQuery(query, [filename], function (err, result) {
