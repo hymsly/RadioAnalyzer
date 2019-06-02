@@ -21,6 +21,9 @@ app.use((req, res, next) => {
     next();
 });
 
+//frontend
+app.use(express.static(path.join(__dirname, 'client')));
+
 //rutas base
 app.use('/api', AudioRoutes);
 

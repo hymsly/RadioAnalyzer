@@ -4,7 +4,7 @@
 /radioAnalyzerBackend/node_modules/*
 /radioAnalyzerBackend/audios/*.wav
 ##frontend
-/radioAnalyzerFrontend/node_modules/*
+/client_dev/node_modules/*
 ##PRUEBAS
 /Test/*
 /Train/*

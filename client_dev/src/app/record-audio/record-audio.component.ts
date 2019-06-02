@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-record-audio',
