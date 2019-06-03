@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 
