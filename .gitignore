@@ -1,5 +1,6 @@
 #Dont upload .wav files
 /audios/*.wav
+/audios/DIVISIONES
 ##backend
 /radioAnalyzerBackend/node_modules/*
 /radioAnalyzerBackend/audios/*.wav
