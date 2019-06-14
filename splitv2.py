@@ -6,8 +6,6 @@ excelfile = 'divisiones.xlsx'
 
 df = pd.read_excel(excelfile,headers=None)
 
-print(df.head())
-
 for index,row in df.iterrows():
     cantidadSplit = row['cantidad']
     songfile = os.path.join('.\\audios\\DIVISIONES',row['folder'],row['audio'])+'.wav'
@@ -16,5 +14,7 @@ for index,row in df.iterrows():
     largoUnitario = largoTotal//cantidadSplit + (largoTotal%cantidadSplit>0)
     for i in range(cantidadSplit):
         songSplitted = song[i*largoUnitario:(i+1)*largoUnitario]
-        newfile = os.path.join('.\\audios\\data',row['folder']+'_'+row['audio']+'_'+str(i+1)+'.wav')
+        newfilename = row['folder']+'_'+row['audio']+'_'+str(i+1)+'.wav'
+        print(newfilename)
+        newfile = os.path.join('.\\audios\\data',newfilename)
         songSplitted.export(newfile)
