@@ -80,9 +80,9 @@ function recordAudio(req, res) {
     let hour = duracion.split(':')[0];
     let minute = duracion.split(':')[1];
     let radio = RADIO[req.body.radio];
-
-    let query = "insert into audio(name,location,estado,created_at) values(?,?,0,now())";
-    db.driver.execQuery(query, [req.body.radio, filename], function (err) {
+    let duracionMinutos = 60 * hour + minute;
+    let query = "insert into audio(name,location,estado,created_at,duracion) values(?,?,0,now(),?)";
+    db.driver.execQuery(query, [req.body.radio, filename, duracionMinutos], function (err) {
         if (err) {
             console.log(err);
             res.send({
@@ -129,10 +129,28 @@ function uploadAudio(req, res) {
         })
     }
 }
+
+function analizar(req, res) {
+    let audio = req.params.audio;
+    let split = req.query.split;
+    res.status(200).send(
+        {
+            message: "analizando",
+            audio: audio,
+            split: split
+        }
+    )
+    const pythonProcess = spawn(process.env.PY_EXE, ["splitAudio.py", audio, split]);
+    pythonProcess.stdout.on('data', (data) => {
+        console.log('done');
+    });
+}
+
 module.exports = {
     getAudio,
     getAllAudios,
     getBlob,
+    analizar,
     recordAudio,
     uploadAudio
 };

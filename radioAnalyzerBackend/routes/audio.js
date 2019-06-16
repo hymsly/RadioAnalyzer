@@ -10,6 +10,7 @@ var api = express.Router();
 api.get('/audio', AudioController.getAllAudios);
 api.get('/audio/:id', AudioController.getAudio);
 api.get('/audio/download/:audio', AudioController.getBlob);
+api.get('/audio/analizar/:audio', AudioController.analizar);
 api.post('/audio/record', AudioController.recordAudio);
 api.post('/audio/upload', multipartMiddleware, AudioController.uploadAudio);
 

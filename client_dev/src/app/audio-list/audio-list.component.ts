@@ -9,7 +9,7 @@ import * as FileSaver from 'file-saver';
 export class AudioListComponent implements OnInit {
   public audios;
   public selectedAudio;
-  public readyAudio=false;
+  public readyAudio = false;
   constructor(public api: ApiService) {
   }
 
@@ -20,14 +20,18 @@ export class AudioListComponent implements OnInit {
   }
   public selectAudio(audio) {
     this.selectedAudio = audio;
-    if(audio.estado==1){
+    if (audio.estado == 1) {
       this.readyAudio = false;
-    }else{
+    } else {
       this.readyAudio = true;
     }
   }
-  public Analysis(audio){
-    alert('aun no esta implementado!');
+  public Analysis(audio) {
+    this.api.analyzeAudio(audio.location, audio.duracion * 15).subscribe((data: any) => {
+      console.log(data.message);
+      console.log(data.audio);
+      console.log(data.split)
+    });
   }
   public Download(audio) {
     this.api.dowloandAudio(audio.location).subscribe((data: any) => {

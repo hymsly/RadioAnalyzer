@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Audio } from './audio';
 import { Global } from './global';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +21,9 @@ export class ApiService {
   }
   public dowloandAudio(file: string) {
     return this.httpClient.get(`${this.apiURL}/audio/download/${file}`, { responseType: 'blob' });
+  }
+  public analyzeAudio(file: string, particiones: number) {
+    return this.httpClient.get(`${this.apiURL}/audio/analizar/${file}`, { params: { split: String(particiones) } });
   }
   public uploadAudio(formData) {
     return this.httpClient.post(`${this.apiURL}/audio/upload`, formData, {
