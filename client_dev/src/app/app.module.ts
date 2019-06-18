@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SendAudioComponent } from './send-audio/send-audio.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { RecordAudioComponent } from './record-audio/record-audio.component';
+import { ListarParticionComponent } from './listar-particion/listar-particion.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RecordAudioComponent } from './record-audio/record-audio.component';
     HeaderComponent,
     FooterComponent,
     SendAudioComponent,
-    RecordAudioComponent
+    RecordAudioComponent,
+    ListarParticionComponent
   ],
   imports: [
     BrowserModule,

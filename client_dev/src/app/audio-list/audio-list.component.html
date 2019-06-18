@@ -35,10 +35,11 @@
         {{selectedAudio.location}}
       </p>
       <div>
-        <button class="btn btn-primary" (click)="Analysis(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
-          Analizar</button>
+        <button class="btn btn-primary" (click)="Particionar(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
+          Particionar</button>
         <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
           Descargar</button>
+          <a routerLink="/listar-particion/{{selectedAudio.id}}">Ver Particiones</a>
       </div>
     </div>
 

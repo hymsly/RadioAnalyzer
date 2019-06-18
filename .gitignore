@@ -5,6 +5,7 @@
 ##backend
 /radioAnalyzerBackend/node_modules/*
 /radioAnalyzerBackend/audios/*.wav
+/radioAnalyzerBackend/*/*.wav
 ##frontend
 /client_dev/node_modules/*
 ##PRUEBAS

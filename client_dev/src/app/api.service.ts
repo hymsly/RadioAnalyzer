@@ -11,9 +11,8 @@ export class ApiService {
   public apiURL: String = (new Global).url;
   constructor(private httpClient: HttpClient) {
   }
-
+  /*AUDIOS */
   public getAudios() {
-    console.log(`${this.apiURL}/audio`);
     return this.httpClient.get(`${this.apiURL}/audio`);
   }
   public getAudioById(id: number) {
@@ -22,8 +21,8 @@ export class ApiService {
   public dowloandAudio(file: string) {
     return this.httpClient.get(`${this.apiURL}/audio/download/${file}`, { responseType: 'blob' });
   }
-  public analyzeAudio(file: string, particiones: number) {
-    return this.httpClient.get(`${this.apiURL}/audio/analizar/${file}`, { params: { split: String(particiones) } });
+  public particionarAudio(file: string, particiones: number,id:number) {
+    return this.httpClient.get(`${this.apiURL}/audio/particionar/${file}`, { params: { split: String(particiones),id:String(id) } });
   }
   public uploadAudio(formData) {
     return this.httpClient.post(`${this.apiURL}/audio/upload`, formData, {
@@ -32,5 +31,11 @@ export class ApiService {
   }
   public recordAudio(formData) {
     return this.httpClient.post(`${this.apiURL}/audio/record`, formData);
+  }
+
+  /*PARTICIONES */
+  public getParticiones(idAudio:number) {
+    console.log(`${this.apiURL}/particion/${idAudio}`);
+    return this.httpClient.get(`${this.apiURL}/particion/${idAudio}`);
   }
 }

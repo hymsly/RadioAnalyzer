@@ -4,7 +4,7 @@ from pydub import AudioSegment
 import sys
 
 filename = sys.argv[1]
-cantidadSplit = sys.argv[2]
+cantidadSplit = int(sys.argv[2])
 
 directory = os.path.join(os.getcwd(),filename)
 

@@ -10,6 +10,7 @@ export class AudioListComponent implements OnInit {
   public audios;
   public selectedAudio;
   public readyAudio = false;
+  public particionado = false;
   constructor(public api: ApiService) {
   }
 
@@ -20,17 +21,15 @@ export class AudioListComponent implements OnInit {
   }
   public selectAudio(audio) {
     this.selectedAudio = audio;
-    if (audio.estado == 1) {
+    if (audio.estado != 0) {
       this.readyAudio = false;
     } else {
       this.readyAudio = true;
     }
   }
-  public Analysis(audio) {
-    this.api.analyzeAudio(audio.location, audio.duracion * 15).subscribe((data: any) => {
+  public Particionar(audio) {
+    this.api.particionarAudio(audio.location, audio.duracion * 15,audio.id).subscribe((data: any) => {
       console.log(data.message);
-      console.log(data.audio);
-      console.log(data.split)
     });
   }
   public Download(audio) {

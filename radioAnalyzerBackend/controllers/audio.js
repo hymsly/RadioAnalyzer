@@ -130,19 +130,48 @@ function uploadAudio(req, res) {
     }
 }
 
-function analizar(req, res) {
+function particionar(req, res) {
     let audio = req.params.audio;
     let split = req.query.split;
-    res.status(200).send(
-        {
-            message: "analizando",
-            audio: audio,
-            split: split
-        }
-    )
+    let id = req.query.id;
     const pythonProcess = spawn(process.env.PY_EXE, ["splitAudio.py", audio, split]);
     pythonProcess.stdout.on('data', (data) => {
         console.log('done');
+        let query = "update audio set estado=2 where location=?";
+        db.driver.execQuery(query, [audio], function (err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send({
+                    message: "error"
+                })
+            } else {
+                res.status(200).send({
+                    message: "particionado"
+                });
+                let querydrop = "delete from particion where idaudio=?;"
+                db.driver.execQuery(querydrop,id,function(err,result){
+                    if(err){
+                        console.log('no pude crear la particion');
+                        console.log(err);
+                    }else{
+                        console.log(result);
+                        console.log(id);
+                        for(let i=1;i<=split;i++){
+                            let queryCurrent = "insert into particion(idaudio,numeroparticion,folder,filename,estado,created_at) values("+id+","+i+","+audio+","+i+","+"1,now());";
+                            db.driver.execQuery(queryCurrent,function(err){
+                                if(err){
+                                    console.log('no pude crear la particion');
+                                    console.log(err);
+                                }else{
+                                    console.log('creado particion',i);
+                                }
+                            });
+                        }
+                    }
+                });
+                
+            }
+        })
     });
 }
 
@@ -150,7 +179,7 @@ module.exports = {
     getAudio,
     getAllAudios,
     getBlob,
-    analizar,
+    particionar,
     recordAudio,
     uploadAudio
 };
