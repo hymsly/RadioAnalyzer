@@ -111,9 +111,10 @@ function uploadAudio(req, res) {
             message: "no file found"
         })
     } else {
-        let path = req.files.file.path;
+	console.log(req.files.file);
+        let pathfile = req.files.file.path;
         let filename = req.files.file.name;
-        let serverFileName = path.split('\\')[1].split('.')[0];
+        let serverFileName = pathfile.split('/')[1].split('.')[0];
         let query = "insert into audio(name,location,estado,created_at) values(?,?,1,now())";
         db.driver.execQuery(query, [filename, serverFileName], function (err, result) {
             if (err) {
