@@ -8,16 +8,27 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./listar-particion.component.css']
 })
 export class ListarParticionComponent implements OnInit {
-  
+
   public particiones;
   public idAudio;
-  constructor(public api: ApiService,private route: ActivatedRoute) { }
+  public selectedParticion;
+  constructor(public api: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.idAudio = this.route.snapshot.paramMap.get("idAudio");
     this.api.getParticiones(this.idAudio).subscribe((data: any) => {
       this.particiones = data.particiones;
     })
+  }
+  Analizar(particion: any) {
+    this.api.analizarParticiones(this.idAudio, particion.id).subscribe((data: any) => {
+      particion.clase = data.clase;
+      alert('analizado');
+    })
+  }
+  Seleccionar(particion: any) {
+    this.selectedParticion = particion;
+    console.log(this.selectedParticion);
   }
 
 }

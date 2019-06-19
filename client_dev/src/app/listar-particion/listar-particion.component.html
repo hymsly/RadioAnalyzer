@@ -16,10 +16,24 @@
         <td>
           <button class="btn btn-light" (click)="Download(particion)" style="margin:10px">
             Descargar</button>
-          <button class="btn btn-light" (click)="Analizar(particion)" [disabled]="particion.estado!=1" style="margin:10px">
+          <button class="btn btn-light" (click)="Analizar(particion)" [disabled]="particion.estado!=1"
+            style="margin:10px">
             Analizar</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="Seleccionar(particion)"> Show details</button>
         </td>
       </tr>
     </tbody>
   </table>
-</div>
+  <div class="card text-center" *ngIf="selectedParticion">
+    <div class="card-header">
+      # {{selectedParticion.id}}
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">{{selectedParticion.folder}}</h4>
+      <p class="card-text">
+        {{selectedParticion.clase}}
+      </p>
+    </div>
+  </div>
