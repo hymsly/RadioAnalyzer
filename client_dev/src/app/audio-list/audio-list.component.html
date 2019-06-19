@@ -4,6 +4,7 @@
       <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Duracion</th>
         <th>File</th>
         <th>Estado</th>
         <th>Fecha creacion</th>
@@ -14,6 +15,7 @@
       <tr *ngFor="let audio of audios">
         <td> {{ audio.id }}</td>
         <td> {{ audio.name }}</td>
+        <td> {{ audio.duracion }}</td>
         <td> {{ audio.location }}</td>
         <td> {{ audio.estado }}</td>
         <td> {{ audio.created_at }}</td>
@@ -33,10 +35,13 @@
         {{selectedAudio.location}}
       </p>
       <div>
-        <button class="btn btn-primary" (click)="Analysis(selectedAudio)" [disabled]="readyAudio" style="margin:10px"> Analisar</button>
-        <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="readyAudio" style="margin:10px"> Descargar</button>
+        <button class="btn btn-primary" (click)="Particionar(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
+          Particionar</button>
+        <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
+          Descargar</button>
+          <a routerLink="/listar-particion/{{selectedAudio.id}}">Ver Particiones</a>
       </div>
-      </div>
+    </div>
 
   </div>
 </div>

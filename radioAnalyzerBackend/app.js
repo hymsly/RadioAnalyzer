@@ -8,7 +8,7 @@ var app = express();
 
 //cargar rutas
 var AudioRoutes = require('./routes/audio');
-
+var ParticionRoutes = require('./routes/particion');
 //bodyParser middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,5 +27,6 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 //rutas base
 app.use('/api', AudioRoutes);
+app.use('/api', ParticionRoutes);
 
 module.exports = app;

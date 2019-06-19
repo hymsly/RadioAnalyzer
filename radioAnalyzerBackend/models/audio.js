@@ -19,6 +19,9 @@ module.exports = function (db, cb) {
         },
         created_at: {
             type: 'date',
+        },
+        duracion: {
+            type: 'number'
         }
     },
         {
