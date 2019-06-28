@@ -114,8 +114,10 @@ function uploadAudio(req, res) {
 	console.log(req.files.file);
         let pathfile = req.files.file.path;
         let filename = req.files.file.name;
-        let serverFileName = pathfile.split('/')[1].split('.')[0];
-        let query = "insert into audio(name,location,estado,created_at) values(?,?,1,now())";
+        console.log(process.env.SEPARADOR_PATH);
+        console.log(pathfile.split(process.env.SEPARADOR_PATH));
+        let serverFileName = pathfile.split(process.env.SEPARADOR_PATH)[1].split('.')[0];
+        let query = "insert into audio(name,location,estado,created_at,duracion) values(?,?,1,now(),5)";
         db.driver.execQuery(query, [filename, serverFileName], function (err, result) {
             if (err) {
                 console.log(err);
@@ -158,7 +160,7 @@ function particionar(req, res) {
                         console.log(result);
                         console.log(id);
                         for(let i=1;i<=split;i++){
-                            let queryCurrent = "insert into particion(idaudio,numeroparticion,folder,filename,estado,created_at) values("+id+","+i+","+audio+","+i+","+"1,now());";
+                            let queryCurrent = "insert into particion(idaudio,numeroparticion,folder,filename,estado,created_at) values("+id+","+i+",'"+audio+"',"+i+","+"1,now());";
                             db.driver.execQuery(queryCurrent,function(err){
                                 if(err){
                                     console.log('no pude crear la particion');

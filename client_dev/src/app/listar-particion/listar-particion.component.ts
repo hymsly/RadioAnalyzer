@@ -21,7 +21,7 @@ export class ListarParticionComponent implements OnInit {
     })
   }
   Analizar(particion: any) {
-    this.api.analizarParticiones(this.idAudio, particion.id).subscribe((data: any) => {
+    this.api.analizarParticiones(this.idAudio, particion.numeroparticion).subscribe((data: any) => {
       particion.clase = data.clase;
       alert('analizado');
     })

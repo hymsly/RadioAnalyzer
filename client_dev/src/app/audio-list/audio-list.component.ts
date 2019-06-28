@@ -29,7 +29,7 @@ export class AudioListComponent implements OnInit {
   }
   public Particionar(audio) {
     this.api.particionarAudio(audio.location, audio.duracion * 15,audio.id).subscribe((data: any) => {
-      console.log(data.message);
+      alert(data.message);
     });
   }
   public Download(audio) {
