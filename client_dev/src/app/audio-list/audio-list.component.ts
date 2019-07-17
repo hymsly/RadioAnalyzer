@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import * as FileSaver from 'file-saver';
 @Component({
@@ -11,7 +12,7 @@ export class AudioListComponent implements OnInit {
   public selectedAudio;
   public readyAudio = false;
   public particionado = false;
-  constructor(public api: ApiService) {
+  constructor(public api: ApiService, private router: Router) {
   }
 
   ngOnInit() {
@@ -21,15 +22,22 @@ export class AudioListComponent implements OnInit {
   }
   public selectAudio(audio) {
     this.selectedAudio = audio;
-    if (audio.estado != 0) {
-      this.readyAudio = false;
-    } else {
+    if (this.selectedAudio.estado == 2) {
+      this.particionado = true;
       this.readyAudio = true;
+    } else if (this.selectedAudio.estado == 1) {
+      this.readyAudio = true;
+      this.particionado = false;
+    } else {
+      this.readyAudio = false;
+      this.particionado = false;
     }
+    console.log(this.selectedAudio)
   }
   public Particionar(audio) {
-    this.api.particionarAudio(audio.location, audio.duracion * 15,audio.id).subscribe((data: any) => {
+    this.api.particionarAudio(audio.location, audio.duracion * 15, audio.id).subscribe((data: any) => {
       alert(data.message);
+      this.router.navigate(['/listar-particion/' + audio.id]);
     });
   }
   public Download(audio) {

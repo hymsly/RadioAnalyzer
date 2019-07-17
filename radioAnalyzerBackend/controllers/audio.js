@@ -111,12 +111,12 @@ function uploadAudio(req, res) {
             message: "no file found"
         })
     } else {
-	console.log(req.files.file);
+        console.log(req.files.file);
         let pathfile = req.files.file.path;
         let filename = req.files.file.name;
         console.log(process.env.SEPARADOR_PATH);
-        console.log(pathfile.split(process.env.SEPARADOR_PATH));
-        let serverFileName = pathfile.split(process.env.SEPARADOR_PATH)[1].split('.')[0];
+        console.log(pathfile.split('\\'));
+        let serverFileName = pathfile.split('\\')[1].split('.')[0];
         let query = "insert into audio(name,location,estado,created_at,duracion) values(?,?,1,now(),5)";
         db.driver.execQuery(query, [filename, serverFileName], function (err, result) {
             if (err) {
@@ -152,27 +152,27 @@ function particionar(req, res) {
                     message: "particionado"
                 });
                 let querydrop = "delete from particion where idaudio=?;"
-                db.driver.execQuery(querydrop,id,function(err,result){
-                    if(err){
+                db.driver.execQuery(querydrop, id, function (err, result) {
+                    if (err) {
                         console.log('no pude crear la particion');
                         console.log(err);
-                    }else{
+                    } else {
                         console.log(result);
                         console.log(id);
-                        for(let i=1;i<=split;i++){
-                            let queryCurrent = "insert into particion(idaudio,numeroparticion,folder,filename,estado,created_at) values("+id+","+i+",'"+audio+"',"+i+","+"1,now());";
-                            db.driver.execQuery(queryCurrent,function(err){
-                                if(err){
+                        for (let i = 1; i <= split; i++) {
+                            let queryCurrent = "insert into particion(idaudio,numeroparticion,folder,filename,estado,created_at) values(" + id + "," + i + ",'" + audio + "'," + i + "," + "1,now());";
+                            db.driver.execQuery(queryCurrent, function (err) {
+                                if (err) {
                                     console.log('no pude crear la particion');
                                     console.log(err);
-                                }else{
-                                    console.log('creado particion',i);
+                                } else {
+                                    console.log('creado particion', i);
                                 }
                             });
                         }
                     }
                 });
-                
+
             }
         })
     });

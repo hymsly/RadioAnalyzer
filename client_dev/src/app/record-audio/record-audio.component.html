@@ -19,9 +19,9 @@
           <div class="form-group">
             <label>Duracion</label>
             <input formControlName="duracion" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.duracion.errors }" placeholder="Duracion" [format]="24"
-              [ngxTimepicker]="range" [ngxTimepicker]="with5Gap" min="00:05" max="02:00" readonly>
-            <ngx-material-timepicker #range #with5Gap [minutesGap]="5"></ngx-material-timepicker>
+              [ngClass]="{ 'is-invalid': submitted && f.duracxion.errors }" placeholder="Duracion" [format]="24"
+              [ngxTimepicker]="range" [ngxTimepicker]="with5Gap" min="00:01" max="02:00" readonly>
+            <ngx-material-timepicker #range #with5Gap [minutesGap]="1"></ngx-material-timepicker>
             <div *ngIf="submitted && f.duracion.errors" class="invalid-feedback">
               <div *ngIf="f.duracion.errors.required">Por favor, Selecciona una Duracion</div>
             </div>

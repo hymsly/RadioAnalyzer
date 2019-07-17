@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Name</th>
+        <th>Fuente</th>
         <th>Duracion</th>
         <th>File</th>
         <th>Estado</th>
@@ -35,11 +35,15 @@
         {{selectedAudio.location}}
       </p>
       <div>
-        <button class="btn btn-primary" (click)="Particionar(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
+        <!--a *ngIf="particionado" routerLink="/listar-particion/{{selectedAudio.id}}">Ver Particiones</a-->
+        <button *ngIf="particionado" class="btn btn-primary" routerLink="/listar-particion/{{selectedAudio.id}}">Ver
+          Particiones</button>
+        <button *ngIf="!particionado" class="btn btn-primary" (click)="Particionar(selectedAudio)"
+          [disabled]="!readyAudio" style="margin:10px">
           Particionar</button>
-        <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="readyAudio" style="margin:10px">
+        <button class="btn btn-light" (click)="Download(selectedAudio)" [disabled]="!readyAudio" style="margin:10px">
           Descargar</button>
-          <a routerLink="/listar-particion/{{selectedAudio.id}}">Ver Particiones</a>
+        <!--a *ngIf="particionado" routerLink="/listar-particion/{{selectedAudio.id}}">Ver Particiones</a-->
       </div>
     </div>
 

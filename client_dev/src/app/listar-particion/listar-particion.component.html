@@ -14,15 +14,15 @@
         <td> {{ particion.estado }}</td>
         <td> {{ particion.clase }}</td>
         <td>
-          <button class="btn btn-light" (click)="Download(particion)" style="margin:10px">
-            Descargar</button>
+          <!--button class="btn btn-light" (click)="Download(particion)" style="margin:10px">
+            Descargar</button-->
           <button class="btn btn-light" (click)="Analizar(particion)" [disabled]="particion.estado!=1"
             style="margin:10px">
             Analizar</button>
         </td>
-        <td>
+        <!--td>
           <button class="btn btn-primary" (click)="Seleccionar(particion)"> Show details</button>
-        </td>
+        </td-->
       </tr>
     </tbody>
   </table>

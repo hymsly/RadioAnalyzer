@@ -17,8 +17,15 @@ filePath = os.path.join(directory,folder,fileName)
 ##url de radio
 URL = sys.argv[2]
 
+##margen de error
+error = 0
+if("RADIO_RPP" in URL):
+    error =10
+else:
+    error = 45
+
 ##time in seconds
-time_limit = int(sys.argv[3])*HOUR + int(sys.argv[4])*MINUTE
+time_limit = int(sys.argv[3])*HOUR + int(sys.argv[4])*MINUTE - error
 
 f = open(filePath, 'wb')
 start_time_in_seconds = time.time()
