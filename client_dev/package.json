@@ -26,7 +26,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "luxon": "^1.16.0",
+    "luxon": "^1.28.1",
     "ng2-slim-loading-bar": "^4.0.0",
     "ng2-slim-loading-bar-observables": "^1.2.0",
     "ngx-material-timepicker": "^3.1.0",
